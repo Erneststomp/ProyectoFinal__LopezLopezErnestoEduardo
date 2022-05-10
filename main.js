@@ -6,7 +6,7 @@ let sexo;
 let educacion;
 let puesto;
 var Empleados;
-var j=0;
+var i=0;
 
 //inicio del programa
 Empleados=prompt('¿Cuantos empleados seran registrados?');
@@ -42,12 +42,24 @@ function agregados (){
                 input.forEach(input => {
                     input.value = '';
                 });
+                i=i+1;
 }
 
+
 function agregar (){
-    for (let i=0 ; i<Empleados; i++ ){
-        agregados()
-        console.log(i)
-        console.log(agregados)
-    }
-}
+        if (i<Empleados){
+
+                agregados()
+                console.log(i)
+                console.log(agregados)
+         
+            console.log('Esta es la visualizacion de empleados')
+            console.log(Empleados)
+            console.log('Esta es la visualizacion de i')
+            console.log(i)
+        }
+
+        else{
+            alert('ya no puede registrar a mas empleados');
+        }
+   }
