@@ -6,7 +6,7 @@ let sexo;
 let educacion;
 let puesto;
 var Empleados;
-var i=0;
+var j=0;
 
 //inicio del programa
 Empleados=prompt('¿Cuantos empleados seran registrados?');
@@ -21,8 +21,9 @@ function agregados (){
                 edad: document.getElementById("AGE").value,
                 sexo: document.getElementById("SEX").value,
                 puesto: document.getElementById("JOB").value,
-                estudios: document.getElementById("STUDIES").value,};
-                
+                estudios: document.getElementById("STUDIES").value
+            };
+            
                 let newlist=document.createElement('div');
                 newlist.classList.add('addData');
                 newlist.innerHTML=`
@@ -41,15 +42,12 @@ function agregados (){
                 input.forEach(input => {
                     input.value = '';
                 });
-                i=i+1;
 }
 
-
-    while (i < Empleados) {  
-        function agregar (){  
-    
-        }
+function agregar (){
+    for (let i=0 ; i<Empleados; i++ ){
+        agregados()
         console.log(i)
         console.log(agregados)
-        
     }
+}
