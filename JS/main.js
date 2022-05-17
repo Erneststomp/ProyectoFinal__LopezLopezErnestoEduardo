@@ -65,11 +65,11 @@ function agregados (){
                 numero: i+1
             };
             console.log(data);
-            data.unshift('otro elemento');
-            console.log(data);
-            console.log( data.length );
-            data.shift();
-            console.log(data);
+            //data.unshift('otro elemento');
+            //console.log(data);
+            //console.log( data.length );
+            //data.shift();
+            //console.log(data);
 
 
                 let newlist=document.createElement('div');
