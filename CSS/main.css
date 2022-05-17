@@ -1,0 +1,8 @@
+.Empleados__CSS{
+    text-align: center;
+    width:70%;
+    height:auto;
+    padding:1em;
+    background-color: #ffffff;
+    background-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5) 0%, rgba(192, 170, 170, 0.5) 100%);
+}

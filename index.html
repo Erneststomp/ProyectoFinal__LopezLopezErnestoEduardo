@@ -8,64 +8,30 @@
 </head>
 <body>
     <h1>Este es mi entrega del desafio: Simulador interactivo</h1>
-    <h2>Este es el simulador de una pagina para cargar datos de empleados</h2>
+    <h2>Para poder accesar se pide un usuario y contraseá que seran Admin para ambos casos</h2>
  <fieldset>
-    <div class="container">
-        <div class="registrationcontainer">
-            <div class="name">
-                <p>Datos del Usuario</p></div>
-            <div>
-                <div>
-                    <label >Nombre:</label>
-                    <input type="text" id="NAME" name="Name" placeholder="Nombre">
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label>Apellidos:</label>
-                    <input id="LASTNAME" name="apellido" type="text" placeholder="Apellidos">
-                </div>
-            </div>
-            <div>
-                <div>
-                    <label>Edad:</label>
-                    <input id="AGE" name="Edad" type="text" placeholder="Edad">
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <label>Sexo:</label>
-                    <input id="SEX" name="Sexo" type="text" placeholder="Mujer/Hombre/Otro/">
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <label>Eduacion:</label>
-                    <input id="STUDIES" name="Eduacion" type="text" placeholder="Estudios">
-                </div>
-            </div>
-
-            <div>
-                <div>
-                    <label>Puesto:</label>
-                    <input id="JOB" name="Job" type="text" placeholder="Job">
-                </div>
-            </div>
-            
-            <div> 
-                    <div>
-                        <button onclick="agregar();">Registrar</button>
-                    </div>
-            </div>                       
-        </div> 
+    <h3>Iniciar Sesion</h3>
+    
+    <div>
+        <label >Usuario:</label>
+        <input type="text" id="USERNAME" name="username" placeholder="USUARIO">
     </div>
+
+    <div>
+        <label >Conraseña:</label>
+        <input type="password" id="PASSWORDS" name="passwords" placeholder="CONTRASEÑA">
+    </div>
+
+    <div> 
+        <div>
+            <button onclick="Iniciar();">Entrar</button>
+        </div>
+    </div>  
+
 </fieldset>
 
-<div class="output">    
+<div class="inputs">    
 </div>
-
-    <script src="main.js"></script>
+    <script src="./JS/main.js"></script>
 </body>
 </html>
