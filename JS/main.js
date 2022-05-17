@@ -5,7 +5,7 @@ let edad;
 let sexo;
 let educacion;
 let puesto;
-var Empleados;
+var Empleados=3;
 var i=0;
 let username__1;
 let password__1;
@@ -65,7 +65,11 @@ function agregados (){
                 numero: i+1
             };
             console.log(data);
-            console.log(data.length);
+            data.unshift('otro elemento');
+            console.log(data);
+            console.log( data.length );
+            data.shift();
+            console.log(data);
 
 
                 let newlist=document.createElement('div');
