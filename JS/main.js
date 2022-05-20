@@ -112,7 +112,5 @@ function Modificar__Datos(){
     modificador=prompt('¿Que numero de empleado buscas modificiar? (de momento solo se guarda un empleado en memoria por tanto solo se modifica el 1 o en caso de que guarde muchos, solo se modificara el ultimo)');
     modificador=1;
     change=prompt('Digite el dato que desea modificar: 1) Nombre 2) Apellido 3) Edad 4) Sexo 5)Educacion 6)Puesto');
-    
-    
 }
 
