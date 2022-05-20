@@ -5,12 +5,14 @@ let edad;
 let sexo;
 let educacion;
 let puesto;
-var Empleados=3;
+var Empleados=1;
 var i=0;
 let username__1;
 let password__1;
 var Empleados__1;
-
+var modificador=1;
+var save_changes=0;
+var change;
 //inicio del programa 
 //acceso mediante contraseña
 
@@ -53,7 +55,6 @@ function Empleador__registro(){
 //Ingreso de datos a partir de formulario HTML
 function agregados (){
             var output=document.querySelector(".output");
-            console.log(output);
             console.log(Empleados);
             const data={
                 nombre: document.getElementById("NAME").value,
@@ -65,17 +66,13 @@ function agregados (){
                 numero: i+1
             };
             console.log(data);
-            //data.unshift('otro elemento');
-            //console.log(data);
-            //console.log( data.length );
-            //data.shift();
-            //console.log(data);
+            localStorage.setItem('Datos_de_Empleados', JSON.stringify(data));
 
-
+            //imprime los datos en pantalla
                 let newlist=document.createElement('div');
                 newlist.classList.add('Empleados__CSS');
                 newlist.innerHTML=`
-                <div >${data.nombre}</div>
+                <div>${data.nombre}</div>
                 <div>${data.apellido}</div>
                 <div>${data.edad}</div>
                 <div>${data.sexo}</div>
@@ -83,21 +80,13 @@ function agregados (){
                 <div>${data.estudios}</div>
                 <div>${data.numero}</div>
                 `
-                console.log(newlist);
                 output.appendChild(newlist);
-
-                localStorage.setItem("Datos_de_Empleados",data);
-
-                console.log(data)
     //Limpieza de datos en el formulario
                 let input=document.querySelectorAll('input');
                 input.forEach(input => {
                     input.value = '';
                 });
                 i=i+1;
-
-
-
 }
 
 //Funcion que impide que se caregen datos de forma indefinida, la limita a la cantidad de empleados previamente cargados a sistema
@@ -116,8 +105,14 @@ function agregar (){
 
 //Funcion para la edicion de datos DE MOMENTO NO HACE NADA!!!
 function Modificar__Datos(){
-    var storedValue = localStorage.getItem("Datos_de_Empleados");
-    data=storedValue;
-    console.log(data)
+    data = localStorage.getItem('Datos_de_Empleados');
+    console.log(data);
+    data = JSON.parse(data);
+    console.log(data);
+    modificador=prompt('¿Que numero de empleado buscas modificiar? (de momento solo se guarda un empleado en memoria por tanto solo se modifica el 1 o en caso de que guarde muchos, solo se modificara el ultimo)');
+    modificador=1;
+    change=prompt('Digite el dato que desea modificar: 1) Nombre 2) Apellido 3) Edad 4) Sexo 5)Educacion 6)Puesto');
+    
+    
 }
 
