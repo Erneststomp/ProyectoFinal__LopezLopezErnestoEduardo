@@ -141,7 +141,6 @@ function printscreen (){
 
                 let newlist=document.createElement('div');
                 newlist.classList.add('Empleados__CSS');
-                newlist.classList.add("box-cell");
                 newlist.innerHTML=` 
                 <div class = "textformat">${data.nombre}</div>
                 <div class = "textformat">${data.apellido}</div>

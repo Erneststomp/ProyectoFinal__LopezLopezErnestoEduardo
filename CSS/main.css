@@ -3,7 +3,6 @@
     width: 50%;
     margin-left: auto;
     margin-right: auto;
-    height:auto;
     background-color: #ffffff;
     background-image: linear-gradient(to top, rgb(245, 166, 166) 0%, rgba(255, 0, 0, 0.803) 100%);
 }
