@@ -1,8 +1,56 @@
 .Empleados__CSS{
     text-align: center;
-    width:50%;
+    width: 50%;
+    margin-left: auto;
+    margin-right: auto;
     height:auto;
-    padding:1em;
     background-color: #ffffff;
-    background-image: linear-gradient(to bottom, rgb(255, 255, 255) 0%, rgba(255, 53, 53, 0.5) 100%);
+    background-image: linear-gradient(to top, rgb(245, 166, 166) 0%, rgba(255, 0, 0, 0.803) 100%);
 }
+
+.custom_text_color {
+    color: #dc3545; }
+
+
+.body__footer, .body__footer__style {
+    position: fixed;
+    background: #dc3545;
+    margin-top: 0cm;
+    margin-bottom: 0px;
+    height: 50px;
+    bottom: 0cm;
+    left: 0cm;
+    right: 0cm;
+    min-width: 280px; }
+    .body__footer__style {
+      padding: 0.25cm;
+      margin-right: 0%;
+      color: #ffffff;
+      font-size: small;
+      text-align: right; }
+
+.login__property{
+    left: 0cm;
+    right: 0cm;
+    align-items: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+    
+.textformat{
+    color: white;
+}
+
+.gradient-custom {
+    background: #dc3545;
+    background: -webkit-linear-gradient(to bottom, #dc3545, #ffffff);
+    background: linear-gradient(to bottom, #dc3545, #ffffff); }
+    .gradient-custom__nav {
+      background: #dc3545;
+      background: -webkit-linear-gradient(to bottom, #dc3545, #fdbdbd);
+      background: linear-gradient(to bottom, #dc3545, #fdbdbd); }
+
+.header__logo__shadow {
+    -webkit-filter: drop-shadow(1px 1px 1px #222);
+    filter: drop-shadow(1px 1px 1px #222); }

@@ -3,32 +3,54 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <link rel="stylesheet" href="./CSS/main.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <title>Document</title>
 </head>
 <body>
-    <h1>Registro de Empleados</h1>
-    <h2>Para poder accesar se pide un usuario y contraseá que seran Admin para ambos casos</h2>
+    <div class="container-fluid bg-danger gradient-custom">
+        <a class="navbar-brand" href="index.html">
+            <img src="assets/images/sakura_biomedical-04.png" class="rounded mx-auto img-fluid d-block header__logo__shadow" alt="" width="500">
+        </a>
+    </div>
+    <br>
+
+    <h1 class="fs-1 fw-bold text-center custom_text_color">Registro de Empleados</h1>
+    <h2 class="fs-4  text-center text-black">(Para poder accesar se pide un usuario y contraseá que seran Admin para ambos casos)</h2>
  <fieldset>
-    <h3>Iniciar Sesion</h3>
-    
-    <div>
-        <label >Usuario:</label>
-        <input type="text" id="USERNAME" name="username" placeholder="USUARIO">
-    </div>
 
-    <div>
-        <label >Conraseña:</label>
-        <input type="password" id="PASSWORDS" name="passwords" placeholder="CONTRASEÑA">
+    <div class="container-fluid">
+        <p class="fs-1 fw-bold text-center custom_text_color">Iniciar Sesion</p>
     </div>
-
-    <div> 
+    <div class="login__property">
         <div>
-            <button onclick="Iniciar();">Entrar</button>
+            <div class="mb-3">
+                <label class="form-label">Usuario:</label>
+                <input type="text" id="USERNAME" name="username" placeholder="USUARIO"class="form-control">
+            </div>
         </div>
-    </div>  
 
+
+        <div>
+            <div class="mb-3">
+                <label class="form-label">Contraseña:</label>
+            <input type="password" id="PASSWORDS" name="passwords" placeholder="CONTRASEÑA" class="form-control">
+            </div>
+        </div>
+        <br>
+        <div> 
+            <div class="col-md-12 col-sm-12 col-xs-12 text-center ">
+                <button onclick="Iniciar();" type="submit" class="btn btn-primary btn-lg button__align">Entrar</button>
+            </div>
+        </div>  
+    </div>
 </fieldset>
+<footer class="body__footer">
+    <div>
+        <p class="body__footer__style bg-gradient">© Copyright 2022 Todos los derechos reservados @Erneststomp.</p>
+    </div>
+</footer>
 
 <div class="inputs">    
 </div>

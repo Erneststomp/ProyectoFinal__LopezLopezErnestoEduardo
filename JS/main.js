@@ -58,7 +58,6 @@ function Empleador__registro(){
     console.log(Empleados);
     localStorage.setItem("Numerodeempleados",Empleados);
     window.location.href = "./register.html";
-
 }
 
 
@@ -142,14 +141,15 @@ function printscreen (){
 
                 let newlist=document.createElement('div');
                 newlist.classList.add('Empleados__CSS');
-                newlist.innerHTML=`
-                <div>${data.nombre}</div>
-                <div>${data.apellido}</div>
-                <div>${data.edad}</div>
-                <div>${data.sexo}</div>
-                <div>${data.puesto}</div>
-                <div>${data.estudios}</div>
-                <div>${data.numero}</div>
+                newlist.classList.add("box-cell");
+                newlist.innerHTML=` 
+                <div class = "textformat">${data.nombre}</div>
+                <div class = "textformat">${data.apellido}</div>
+                <div class = "textformat">${data.edad}</div>
+                <div class = "textformat">${data.sexo}</div>
+                <div class = "textformat">${data.puesto}</div>
+                <div class = "textformat"${data.estudios}</div>
+                <div class = "textformat">${data.numero}</div>
                 `
                 output.appendChild(newlist);
         }
