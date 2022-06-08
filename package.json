@@ -4,7 +4,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-css": "node-sass --include-path scss scss/index.scss css/index.css",
+    "build-css": "node-sass --include-path scss scss/index.scss CSS/index.css",
     "watch-css": "nodemon -e scss -x \"npm run build-css\""
   },
   "keywords": [],
@@ -14,5 +14,8 @@
   "devDependencies": {
     "node-sass": "^7.0.1",
     "nodemon": "^2.0.16"
+  },
+  "dependencies": {
+    "sweetalert2": "^11.4.17"
   }
 }

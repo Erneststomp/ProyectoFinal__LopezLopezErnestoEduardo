@@ -10,6 +10,9 @@
 .custom_text_color {
     color: #dc3545; }
 
+.color {
+    background-color: #ea00ff; }
+
 
 .body__footer, .body__footer__style {
     position: fixed;
