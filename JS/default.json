@@ -1,0 +1,17 @@
+[{
+    "name": "Ernesto Eduardo",
+    "lastName": "Lopez Lopez",
+    "gender": "Hombre",
+    "studies": "Medical Bioengineer",
+    "age": "28",
+    "job": "Programmer"
+},
+{
+    "name": "Ariadna",
+    "lastName": "Rojas Palma",
+    "gender": "Mujer",
+    "studies": "Graphic Design",
+    "age": "28",
+    "job": "CEO"
+}
+]
