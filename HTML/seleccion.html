@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="../CSS/main.css">
     <title>Numero de Empleados</title>
 </head>
-<body onload="comprobation__index()">
+<body onload="comprobation__index(),cargardatosiniciales(),primercarga()">
     <div class="container-fluid bg-danger gradient-custom">
         <a class="navbar-brand" href="../index.html">
             <img src="../Assets/images/sakura_biomedical-04.png" class="rounded mx-auto img-fluid d-block header__logo__shadow" alt="" width="300">
@@ -24,8 +24,6 @@
             <button onclick="ir_a_registros()" class="btn btn-primary btn-lg button__align">Ver Empleados</button>
             <button onclick="ir_a_agregar()" class="btn btn-danger btn-lg button__align">Registro de Empleados Nuevos</button>
             <button onclick="Cerrar();"  type="submit" class="btn btn-secondary btn-lg button__align">Salir</button>
-            
-            <button onclick="cargardatosiniciales();"  type="submit" class="btn btn-secondary btn-lg button__align">cargar</button>
         </div>
         <br><br>
     </div>   

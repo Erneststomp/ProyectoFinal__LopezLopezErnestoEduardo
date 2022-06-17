@@ -1,17 +1,19 @@
 [{
     "name": "Ernesto Eduardo",
     "lastName": "Lopez Lopez",
-    "gender": "Hombre",
+    "gender": "Male",
     "studies": "Medical Bioengineer",
     "age": "28",
-    "job": "Programmer"
+    "job": "Programmer",
+    "numero": 1
 },
 {
     "name": "Ariadna",
     "lastName": "Rojas Palma",
-    "gender": "Mujer",
+    "gender": "Female",
     "studies": "Graphic Design",
     "age": "28",
-    "job": "CEO"
+    "job": "CEO",
+    "numero": 2
 }
 ]

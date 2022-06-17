@@ -22,7 +22,8 @@ let matrix_emplee_job=[];
 let matrix_emplee_study=[];
 let proof_index=0;
 let proof_number=0;
-
+let initialdata=0;
+var primero=0;
 
 //inicio del programa 
 //acceso mediante contraseña
@@ -172,6 +173,7 @@ function agregados (){
                 matrix_emplee_study[i]=estudios;
                 contador++
             }
+                 
             GuardarDatos()
             if (change==1){
                 change=0;
@@ -271,7 +273,7 @@ function printscreen (){
                 <div class = "textformat">${edad}</div>
                 <div class = "textformat">${sexo}</div>
                 <div class = "textformat">${puesto}</div>
-                <div class = "textformat"${estudios}</div>
+                <div class = "textformat">${estudios}</div>
                 <div class = "textformat">${numero}</div>
                 `
                 output.appendChild(newlist);
@@ -468,10 +470,56 @@ function iniciacion(){
 }
 
 
-
+// carga de datos de json con fetch()
 function cargardatosiniciales(){
-    fetch('../JS/default.json')
+    Empleados=0;
+    i=0;
+    fetch('http://127.0.0.1:5500/JS/default.json')
     .then(respuesta => respuesta.json())
-    .then(respuesta => console.log(respuesta))
+    .then(usuarios => { console.log(usuarios)
+        usuarios.forEach(usuarios =>
+            {
+                console.log(initialdata)
+                data={
+                            nombre: usuarios.name,
+                            apellido: usuarios.lastName,
+                            edad: usuarios.age,
+                            sexo: usuarios.gender,
+                            puesto: usuarios.job,
+                            estudios: usuarios.studies,
+                            numero: usuarios.numero
+                            },
+                            console.log(data)
+                            const {nombre, apellido, edad, sexo, puesto, estudios}=data;
+                            matrix_emplee_name[usuarios.numero-1]=nombre;
+                                matrix_emplee_lastname[usuarios.numero-1]=apellido;
+                                matrix_emplee_age[usuarios.numero-1]=edad;
+                                matrix_emplee_sex[usuarios.numero-1]=sexo;
+                                matrix_emplee_job[usuarios.numero-1]=puesto;
+                                matrix_emplee_study[usuarios.numero-1]=estudios;
+                        localStorage.setItem('Datos_de_Empleados', JSON.stringify(data))
+                        GuardarDatos2()
+            })
+        }
+    )
+}
 
+function GuardarDatos2() {
+    if(primero==0){
+    localStorage.setItem('matriz_empleados_nombre', JSON.stringify(matrix_emplee_name));
+    localStorage.setItem('matriz_empleados_apellido', JSON.stringify(matrix_emplee_lastname));
+    localStorage.setItem('matriz_empleados_edad', JSON.stringify(matrix_emplee_age));
+    localStorage.setItem('matriz_empleados_sexo', JSON.stringify(matrix_emplee_sex));
+    localStorage.setItem('matriz_empleados_trabajo', JSON.stringify(matrix_emplee_job));
+    localStorage.setItem('matriz_empleados_estudios', JSON.stringify(matrix_emplee_study));
+    Empleados++
+    localStorage.setItem('Numerodeempleados',Empleados)
+    i++;
+    localStorage.setItem("i",i);
+}}
+function primercarga(){
+    console.log('primero')
+    console.log(primero)
+    primero=primero+1;
+    console.log(primero)
 }
