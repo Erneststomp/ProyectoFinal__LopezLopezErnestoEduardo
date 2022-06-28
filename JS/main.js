@@ -78,8 +78,8 @@ if (btnRegistros != null) {
     btnRegistros = document.getElementById("BtnRegistros").addEventListener("click", ir_a_registros);
 }
 function ir_a_registros (){
-    var storedValue = localStorage.getItem("Numerodeempleadosnuevos");
-    Empleados__1=parseInt(storedValue,10);
+    var storedValue003 = localStorage.getItem("Numerodeempleadosnuevos");
+    Empleados__1=parseInt(storedValue003,10);
    
     lecturadeempleados()
     lecturadei()
@@ -127,8 +127,14 @@ function ir_a_agregar (){
         input: 'number'
       }).then(function(result) {
         if (result.value) {
+        
           const  Empleados__1= result.value
           localStorage.setItem("Numerodeempleadosnuevos",Empleados__1);
+          lecturadeempleados()
+          var totalempelados=0;
+          totalempelados = Number(Empleados__1)+Number(Empleados);
+          localStorage.setItem("totalempelados",totalempelados);
+          
           if(Empleados__1>0){
               proof_number=1;
               contador=0;
@@ -203,6 +209,14 @@ function agregados (){
                 });
                 i++;
                 localStorage.setItem("i",i);
+            }
+
+
+            var storedValue002 = localStorage.getItem("totalempelados");
+            totalempelados=parseInt(storedValue002,10);
+            
+            if(i==totalempelados){
+                ir_a_registros ()
             }
 }
 
@@ -541,11 +555,11 @@ if (btnEliminar != null) {
 }
 function ir_a_eliminar(){
     lecturadeempleados()
-   
-    Swal.fire({
-        text: '¿Que numero de empleado desea Eliminar?',
-        input: 'number'
-      }).then(function(result) {
+   if(Empleados!=0){
+        Swal.fire({
+            text: '¿Que numero de empleado desea Eliminar?',
+            input: 'number'
+        }).then(function(result) {
         
         if (result.isConfirmed) {
             let  eliminador= result.value
@@ -607,7 +621,16 @@ function ir_a_eliminar(){
             }
         } 
       })
-
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Lo sentimos',
+            text: 'No hay empleados que eliminar',
+        }).then((result) => {
+            if (result.isConfirmed) {
+            }
+        })
+    }
 
 }
 
