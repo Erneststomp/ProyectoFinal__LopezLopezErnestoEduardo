@@ -552,7 +552,7 @@ function ir_a_eliminar(){
             eliminador=eliminador-1;
              LecturadeDatos()
             console.log( matrix_emplee_name[eliminador])
-            if (eliminador <= Empleados && eliminador>=0 && eliminador>1) {
+            if (eliminador < Empleados && eliminador>=0 && eliminador>1) {
                 if (matrix_emplee_name[eliminador]!=''){
                     Swal.fire({
                         title: 'Seguro que desea eliminar al empleado?',
