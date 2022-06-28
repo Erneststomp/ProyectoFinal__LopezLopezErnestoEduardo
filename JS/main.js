@@ -28,6 +28,11 @@ var primero;
 //inicio del programa 
 //acceso mediante contraseña
 
+var btnIniciar = document.getElementById("BtnIniciar");
+if (btnIniciar != null) {
+    document.getElementById("BtnIniciar").addEventListener("click", Iniciar);
+}
+
 function Iniciar (){
     const userdata={
         username__1: document.getElementById("USERNAME").value,
@@ -68,6 +73,10 @@ function comprobation__index(){
 }
 
 //funcion que dirige al historial de empleados, verifica que se haya registrado algun empleado 
+var btnRegistros = document.getElementById("BtnRegistros");
+if (btnRegistros != null) {
+    btnRegistros = document.getElementById("BtnRegistros").addEventListener("click", ir_a_registros);
+}
 function ir_a_registros (){
     var storedValue = localStorage.getItem("Numerodeempleadosnuevos");
     Empleados__1=parseInt(storedValue,10);
@@ -99,10 +108,19 @@ function ir_a_registros (){
     }
 }
 //redireccion a pagina de inicio se sesion
+var btnSalir = document.getElementById("BtnSalir");
+if (btnSalir != null) {
+    btnSalir = document.getElementById("BtnSalir").addEventListener("click", Cerrar);
+}
+
 function Cerrar (){
     window.location.href = "../index.html";
 }
 //Registro del numero de epleados a cargar
+var btnAgregar = document.getElementById("BtnAgregar");
+if (btnAgregar != null) {
+    document.getElementById("BtnAgregar").addEventListener("click", ir_a_agregar);
+}
 function ir_a_agregar (){
     Swal.fire({
         text: '¿Cuantos empleados quiere registrar?',
@@ -185,9 +203,6 @@ function agregados (){
                 });
                 i++;
                 localStorage.setItem("i",i);
-                if(i==Empleados){
-                    ir_a_registros ()
-                }
             }
 }
 
@@ -287,6 +302,10 @@ function printscreen (){
 }
 
 //Funcion que impide que se caregen datos de forma indefinida, la limita a la cantidad de empleados previamente cargados a sistema
+var btnAgregar2 = document.getElementById("BtnAgregar2");
+if (btnAgregar2 != null) {
+    btnAgregar2 = document.getElementById("BtnAgregar2").addEventListener("click", agregar);
+}
 function agregar (){  
 
     console.log(document.getElementById("STUDIES").value)
@@ -325,6 +344,11 @@ function agregar (){
 }
 
 //redireccion a modificador
+
+var btnModificar = document.getElementById("BtnModificar");
+if (btnModificar != null) {
+    document.getElementById("BtnModificar").addEventListener("click",Modificar__Datos);
+}
 function Modificar__Datos(){
     lecturadeempleados()
     
@@ -470,8 +494,19 @@ function validacioninicial(){
         matrix_emplee_study=[];
     }
 }
+
+var btnRegresar = document.getElementById("BtnRegresar");
+if (btnRegresar != null) {
+    document.getElementById("BtnRegresar").addEventListener("click", Volver);
+}
+
 function Volver(){
     window.history.back();
+}
+
+var btnRegresar1 = document.getElementById("BtnRegresar1");
+if (btnRegresar1 != null) {
+    document.getElementById("BtnRegresar1").addEventListener("click", Volver1);
 }
 function Volver1(){
     window.location.href = "./seleccion.html";
@@ -496,10 +531,14 @@ function iniciacion(){
 
 
 function primercarga(){
+    if(primero==0){
     primero=primero+1;
-    localStorage.setItem('primero',primero)
+    localStorage.setItem('primero',primero)}
 }
-
+var btnEliminar = document.getElementById("BtnEliminar");
+if (btnEliminar != null) {
+    document.getElementById("BtnEliminar").addEventListener("click", ir_a_eliminar);
+}
 function ir_a_eliminar(){
     lecturadeempleados()
    
@@ -576,7 +615,7 @@ function ir_a_eliminar(){
 // carga de datos de json con fetch()
 function cargardatosiniciales(){
     var storedValue001 = localStorage.getItem("primero");
-    primero=storedValue001;
+    primero=parseInt(storedValue001,10);
     Empleados=0;
     i=0;
     fetch('http://127.0.0.1:5500/JS/default.json') 
@@ -584,7 +623,6 @@ function cargardatosiniciales(){
     .then(usuarios => {
         usuarios.forEach(usuarios =>
             {
-
                 data={
                             nombre: usuarios.name,
                             apellido: usuarios.lastName,
