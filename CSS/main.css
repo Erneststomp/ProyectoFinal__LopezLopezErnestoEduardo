@@ -1,10 +1,10 @@
 .Empleados__CSS{
     text-align: center;
-    width: 50%;
+    width: 60%;
     margin-left: auto;
     margin-right: auto;
     background-color: #ffffff;
-    background-image: linear-gradient(to top, rgb(245, 166, 166) 0%, rgba(255, 0, 0, 0.803) 100%);
+    background-image: linear-gradient(to top, rgb(240, 168, 168) 0%, rgba(255, 0, 0, 0.803) 100%);
 }
 
 .custom_text_color {
@@ -39,15 +39,26 @@
     margin-right: auto;
     width: 50%;
 }
-    
+.textcontainer{
+    margin-top: .1cm;
+    margin-bottom: .1cm;
+    padding-bottom: .5cm;
+    padding-top: .5cm;
+}
+.textcontainer:hover{
+    background-image: linear-gradient(to top, rgb(166, 58, 58) 0%, rgba(255, 0, 0, 0.803) 100%);
+}
 .textformat{
-    color: white;
+    color: white;   
+    text-align: left;
+    padding-left: 1cm;
+    padding-right: 1cm;
 }
 
 .gradient-custom {
     background: #dc3545;
     background: -webkit-linear-gradient(to bottom, #dc3545, #ffffff);
-    background: linear-gradient(to bottom, #dc3545, #ffffff); }
+    background: linear-gradient(to bottom, #dc3545, #fc9999); }
     .gradient-custom__nav {
       background: #dc3545;
       background: -webkit-linear-gradient(to bottom, #dc3545, #fdbdbd);

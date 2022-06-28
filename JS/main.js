@@ -23,7 +23,7 @@ let matrix_emplee_study=[];
 let proof_index=0;
 let proof_number=0;
 let initialdata=0;
-var primero=0;
+var primero;
 
 //inicio del programa 
 //acceso mediante contraseña
@@ -36,14 +36,10 @@ function Iniciar (){
     username__1=[userdata.username__1];
     password__1=[userdata.password__1];
 
-    console.log(userdata)
-    console.log(username__1)
-    console.log(password__1)
 
     if (username__1=="Admin" && password__1=="Admin"){
         proof_index=1;
         localStorage.setItem("proof__index",proof_index);
-        console.log(proof_index)
         window.location.href = "./HTML/seleccion.html";
 }
 else{
@@ -56,7 +52,7 @@ else{
 }
 
 function comprobation__index(){
-    console.log(proof_index)
+
     var storedValue = localStorage.getItem("proof__index");
     proof_index=storedValue;
     if (proof_index==0 || proof_index==null){
@@ -64,6 +60,8 @@ function comprobation__index(){
             icon: 'error',
             title: 'Inicie sesion',
           }).then(function() {
+            primero=0;
+            localStorage.setItem('primero',primero)
             window.location.href = "../index.html";
         });
     }
@@ -76,9 +74,7 @@ function ir_a_registros (){
    
     lecturadeempleados()
     lecturadei()
-    console.log(Empleados)
-    
-    console.log(Empleados__1)
+
     if(i==Empleados|| Empleados==0 || Empleados==null || Empleados==NaN|| Empleados==undefined || Empleados=='NaN'|| Empleados=='undefined'){
         localStorage.setItem("Numerodeempleados",Empleados);
         window.location.href = "./registros.html";
@@ -117,7 +113,10 @@ function ir_a_agregar (){
           localStorage.setItem("Numerodeempleadosnuevos",Empleados__1);
           if(Empleados__1>0){
               proof_number=1;
+              contador=0;
+              localStorage.setItem("contador",contador);
               window.location.href = "./register.html";
+             
           }
           else{
               Swal.fire({
@@ -132,12 +131,12 @@ function ir_a_agregar (){
 
 //Ingreso de datos a partir de formulario HTML
 function agregados (){
-    console.log(change)
+
     LecturadeDatos()
     lecturadei()
     validacioninicial()
     leermodificador ()
-    console.log(modificador)
+
             const data={
                 nombre: document.getElementById("NAME").value,
                 apellido: document.getElementById("LASTNAME").value,
@@ -151,8 +150,6 @@ function agregados (){
 
             localStorage.setItem('Datos_de_Empleados', JSON.stringify(data));
 
-            console.log(i);
-            console.log(modificador)
             if(change == 1) {
                 matrix_emplee_name[modificador]=nombre;
                 matrix_emplee_lastname[modificador]=apellido;
@@ -172,6 +169,7 @@ function agregados (){
                 matrix_emplee_job[i]=puesto;
                 matrix_emplee_study[i]=estudios;
                 contador++
+                localStorage.setItem("contador",contador);
             }
                  
             GuardarDatos()
@@ -186,12 +184,15 @@ function agregados (){
                     input.value = '';
                 });
                 i++;
-                localStorage.setItem("i",i);}
+                localStorage.setItem("i",i);
+                if(i==Empleados){
+                    ir_a_registros ()
+                }
+            }
 }
 
 // Confirmacion de datos
 function Confirmation() {
-    console.log(change)
     const data={
         nombre: document.getElementById("NAME").value,
         apellido: document.getElementById("LASTNAME").value,
@@ -264,50 +265,69 @@ function printscreen (){
             estudios: matrix_emplee_study[j],
             numero: j+1,
         };
-        const {nombre, apellido, edad, sexo, puesto, estudios, numero}=data;
-                let newlist=document.createElement('div');
-                newlist.classList.add('Empleados__CSS');
-                newlist.innerHTML=` 
-                <div class = "textformat">${nombre}</div>
-                <div class = "textformat">${apellido}</div>
-                <div class = "textformat">${edad}</div>
-                <div class = "textformat">${sexo}</div>
-                <div class = "textformat">${puesto}</div>
-                <div class = "textformat">${estudios}</div>
-                <div class = "textformat">${numero}</div>
-                `
-                output.appendChild(newlist);
+            if (matrix_emplee_name[j]!=''){
+                const {nombre, apellido, edad, sexo, puesto, estudios, numero}=data;
+                        let newlist=document.createElement('div');
+                        newlist.classList.add('Empleados__CSS');
+                        newlist.innerHTML=` 
+                        <div class = "textcontainer">
+                            <div class = "textformat">Nombre: ${nombre}</div>
+                            <div class = "textformat">Apellidos: ${apellido}</div>
+                            <div class = "textformat">Edad: ${edad}</div>
+                            <div class = "textformat">Genero: ${sexo}</div>
+                            <div class = "textformat">Puesto de Trabajo: ${puesto}</div>
+                            <div class = "textformat">Formacion Academica: ${estudios}</div>
+                            <div class = "textformat">Numero de Empleado: ${numero}</div>
+                        </div>
+
+                        `
+                        output.appendChild(newlist);
+            }
         }
 }
 
 //Funcion que impide que se caregen datos de forma indefinida, la limita a la cantidad de empleados previamente cargados a sistema
-function agregar (){    
-    lecturadeempleados()
-    var storedValue3 = localStorage.getItem("Numerodeempleadosnuevos");
-    Empleados__1=parseInt(storedValue3,10);
+function agregar (){  
 
-    var storedValue4 = localStorage.getItem("cambios");
-    change=parseInt(storedValue4,10);
-    localStorage.setItem("Numerodeempleados",Empleados);
-    lecturadei()
+    console.log(document.getElementById("STUDIES").value)
+    if (document.getElementById("NAME").value!=""&&document.getElementById("LASTNAME").value!=""&&document.getElementById("AGE").value!=""&&document.getElementById("JOB").value!=""&&document.getElementById("STUDIES").value!=""){
+      
+        lecturadeempleados()
+        var storedValue3 = localStorage.getItem("Numerodeempleadosnuevos");
+        Empleados__1=parseInt(storedValue3,10);
 
-        if (contador<Empleados__1||change==1){
-            Confirmation()    
-            //agregados()
-        }
-        else{
-            Swal.fire({
-                icon: 'error',
-                title: 'Lo sentimos',
-                text: 'Ya ha registrado a todos los empleados solicitados'
-              })
-        }
+        var storedValue11 = localStorage.getItem("contador");
+        contador=parseInt(storedValue11,10); 
+
+        var storedValue4 = localStorage.getItem("cambios");
+        change=parseInt(storedValue4,10);
+        localStorage.setItem("Numerodeempleados",Empleados);
+        lecturadei()
+
+            if (contador<Empleados__1||change==1){
+                Confirmation()    
+                //agregados()
+            }
+            else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lo sentimos',
+                    text: 'Ya ha registrado a todos los empleados solicitados'
+                })
+            }
+    }else{
+        Swal.fire({
+            icon: 'error',
+            title: 'Lo sentimos',
+            text: 'Ingrese los campos obligatorios'
+        })
+    }
 }
 
 //redireccion a modificador
 function Modificar__Datos(){
     lecturadeempleados()
-    console.log(Empleados)
+    
     if (Empleados==0 || Empleados==null || Empleados==NaN|| Empleados==undefined){
         Swal.fire({
             icon: 'error',
@@ -323,13 +343,11 @@ function Modificar__Datos(){
 //Funcion para la edicion de datos 
 function changesupdate(){
     lecturadeempleados()
+    LecturadeDatos()
     data = localStorage.getItem('Datos_de_Empleados');
-    console.log(data);
     data = JSON.parse(data);
-    console.log(data);
     matrix_emplee_name=JSON.parse(localStorage.getItem('matriz_empleados_nombre'));
     i=matrix_emplee_name.length;
-    console.log(i)
     change=-1;
     localStorage.setItem('cambios', JSON.stringify(change));
         Swal.fire({
@@ -339,12 +357,9 @@ function changesupdate(){
  
             if (result.isConfirmed) {
                 let  modificador= result.value
-                console.log(modificador)
                 if(modificador==undefined||modificador==null||modificador==NaN||modificador==''){modificador=-1;}
-                if (modificador <= Empleados && modificador>=0) {
-                    console.log(modificador)
+                if (modificador <= Empleados && modificador>=0 && matrix_emplee_name[modificador]!='') {
                     modificador=modificador-1;
-                    console.log(modificador)
                     localStorage.setItem('modificador',modificador)
                     LecturadeDatos()
     
@@ -392,11 +407,20 @@ function GuardarDatos() {
     localStorage.setItem('matriz_empleados_sexo', JSON.stringify(matrix_emplee_sex));
     localStorage.setItem('matriz_empleados_trabajo', JSON.stringify(matrix_emplee_job));
     localStorage.setItem('matriz_empleados_estudios', JSON.stringify(matrix_emplee_study));
-    console.log(Empleados)
     Empleados++;
     if(change==1){ Empleados=Empleados-1;}
-    console.log(Empleados)
     localStorage.setItem('Numerodeempleados',Empleados)
+}
+function EliminarDatos() {
+
+    localStorage.setItem('matriz_empleados_nombre', JSON.stringify(matrix_emplee_name));
+    localStorage.setItem('matriz_empleados_apellido', JSON.stringify(matrix_emplee_lastname));
+    localStorage.setItem('matriz_empleados_edad', JSON.stringify(matrix_emplee_age));
+    localStorage.setItem('matriz_empleados_sexo', JSON.stringify(matrix_emplee_sex));
+    localStorage.setItem('matriz_empleados_trabajo', JSON.stringify(matrix_emplee_job));
+    localStorage.setItem('matriz_empleados_estudios', JSON.stringify(matrix_emplee_study));
+    localStorage.setItem('Numerodeempleados',Empleados)
+    location.reload();
 }
 
 function LecturadeDatos(){
@@ -411,8 +435,7 @@ function LecturadeDatos(){
 function lecturadei(){
     var storedValue = localStorage.getItem("i");
     if (storedValue=='NaN' || storedValue==null || storedValue==undefined){
-        i=0;
-        console.log(i)}
+        i=0;}
     else{
         i=parseInt(storedValue,10);}
 }
@@ -421,7 +444,6 @@ function lecturadeempleados(){
     var storedValue2 = localStorage.getItem("Numerodeempleados");
     if (storedValue2=='NaN' || storedValue2==null || storedValue2==undefined || storedValue2==NaN || storedValue2=='null'){
         Empleados=0;
-        console.log(Empleados)
     }
     else{
         Empleados=parseInt(storedValue2,10);
@@ -451,6 +473,10 @@ function validacioninicial(){
 function Volver(){
     window.history.back();
 }
+function Volver1(){
+    window.location.href = "./seleccion.html";
+}
+
 
 function leermodificador (){
     var storedValue10 = localStorage.getItem("modificador");
@@ -462,24 +488,103 @@ function leermodificador (){
     }
 }
 
-
-
 function iniciacion(){
     change=0;
     localStorage.setItem('cambios', JSON.stringify(change));
+
+}
+
+
+function primercarga(){
+    primero=primero+1;
+    localStorage.setItem('primero',primero)
+}
+
+function ir_a_eliminar(){
+    lecturadeempleados()
+   
+    Swal.fire({
+        text: '¿Que numero de empleado desea Eliminar?',
+        input: 'number'
+      }).then(function(result) {
+        
+        if (result.isConfirmed) {
+            let  eliminador= result.value
+            eliminador=eliminador-1;
+             LecturadeDatos()
+            console.log( matrix_emplee_name[eliminador])
+            if (eliminador <= Empleados && eliminador>=0 && eliminador>1) {
+                if (matrix_emplee_name[eliminador]!=''){
+                    Swal.fire({
+                        title: 'Seguro que desea eliminar al empleado?',
+                        text: "Empleado: " +  matrix_emplee_name[eliminador] + ' ' + matrix_emplee_lastname[eliminador] + ' Puesto: '+ matrix_emplee_job[eliminador],
+                        showDenyButton: true,
+                        confirmButtonText: 'Eliminar',
+                        denyButtonText: `Cancelar`,
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            matrix_emplee_name[eliminador]='';
+                            matrix_emplee_lastname[eliminador]='';
+                            matrix_emplee_age[eliminador]='';
+                            matrix_emplee_sex[eliminador]='';
+                            matrix_emplee_job[eliminador]='';
+                            matrix_emplee_study[eliminador]='';
+                            EliminarDatos()
+                        } else if (result.isDenied) {
+                        Swal.fire('No se elimino al empleado', eliminador, 'info')
+                        }
+                    })}
+                    else{
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lo sentimos',
+                            text: 'El empleado no se encuentra registrado o ya ha sido dado de baja',
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                location.reload();
+                            }
+                        })
+
+                    }
+            }
+            else if(eliminador ==1 || eliminador==0){
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Lo sentimos',
+                    text: 'No puede eliminar a este empleado',
+                })
+
+            } 
+        else{
+            Swal.fire({
+                icon: 'error',
+                title: 'Lo sentimos',
+                text: 'El empleado no se encuentra registrado',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    location.reload();
+                }
+            })
+            }
+        } 
+      })
+
+
 }
 
 
 // carga de datos de json con fetch()
 function cargardatosiniciales(){
+    var storedValue001 = localStorage.getItem("primero");
+    primero=storedValue001;
     Empleados=0;
     i=0;
-    fetch('http://127.0.0.1:5500/JS/default.json')
+    fetch('http://127.0.0.1:5500/JS/default.json') 
     .then(respuesta => respuesta.json())
-    .then(usuarios => { console.log(usuarios)
+    .then(usuarios => {
         usuarios.forEach(usuarios =>
             {
-                console.log(initialdata)
+
                 data={
                             nombre: usuarios.name,
                             apellido: usuarios.lastName,
@@ -488,8 +593,7 @@ function cargardatosiniciales(){
                             puesto: usuarios.job,
                             estudios: usuarios.studies,
                             numero: usuarios.numero
-                            },
-                            console.log(data)
+                            }
                             const {nombre, apellido, edad, sexo, puesto, estudios}=data;
                             matrix_emplee_name[usuarios.numero-1]=nombre;
                                 matrix_emplee_lastname[usuarios.numero-1]=apellido;
@@ -498,28 +602,22 @@ function cargardatosiniciales(){
                                 matrix_emplee_job[usuarios.numero-1]=puesto;
                                 matrix_emplee_study[usuarios.numero-1]=estudios;
                         localStorage.setItem('Datos_de_Empleados', JSON.stringify(data))
-                        GuardarDatos2()
+                        
+                        if(primero==0||primero=='0'){
+                            
+                            localStorage.setItem('matriz_empleados_nombre', JSON.stringify(matrix_emplee_name));
+                            localStorage.setItem('matriz_empleados_apellido', JSON.stringify(matrix_emplee_lastname));
+                            localStorage.setItem('matriz_empleados_edad', JSON.stringify(matrix_emplee_age));
+                            localStorage.setItem('matriz_empleados_sexo', JSON.stringify(matrix_emplee_sex));
+                            localStorage.setItem('matriz_empleados_trabajo', JSON.stringify(matrix_emplee_job));
+                            localStorage.setItem('matriz_empleados_estudios', JSON.stringify(matrix_emplee_study));
+                            Empleados++
+                            localStorage.setItem('Numerodeempleados',Empleados)
+                            i++;
+                            localStorage.setItem("i",i);
+                            }
             })
-        }
+            primercarga()}
     )
-}
-
-function GuardarDatos2() {
-    if(primero==0){
-    localStorage.setItem('matriz_empleados_nombre', JSON.stringify(matrix_emplee_name));
-    localStorage.setItem('matriz_empleados_apellido', JSON.stringify(matrix_emplee_lastname));
-    localStorage.setItem('matriz_empleados_edad', JSON.stringify(matrix_emplee_age));
-    localStorage.setItem('matriz_empleados_sexo', JSON.stringify(matrix_emplee_sex));
-    localStorage.setItem('matriz_empleados_trabajo', JSON.stringify(matrix_emplee_job));
-    localStorage.setItem('matriz_empleados_estudios', JSON.stringify(matrix_emplee_study));
-    Empleados++
-    localStorage.setItem('Numerodeempleados',Empleados)
-    i++;
-    localStorage.setItem("i",i);
-}}
-function primercarga(){
-    console.log('primero')
-    console.log(primero)
-    primero=primero+1;
-    console.log(primero)
+    
 }
