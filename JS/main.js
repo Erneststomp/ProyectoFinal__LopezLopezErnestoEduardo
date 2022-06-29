@@ -218,6 +218,14 @@ function agregados (){
             if(i==totalempelados){
                 ir_a_registros ()
             }
+            else{
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Empleado Guardado\n Registre al siguiente empleado',
+                    showConfirmButton: false,
+                    timer: 1500
+                  })
+            }
 }
 
 // Confirmacion de datos
@@ -638,7 +646,15 @@ function ir_a_eliminar(){
 // carga de datos de json con fetch()
 function cargardatosiniciales(){
     var storedValue001 = localStorage.getItem("primero");
-    primero=parseInt(storedValue001,10);
+   
+    if (storedValue001==null||storedValue001=='null'){
+        primero=0;
+        
+        console.log(primero)
+    }
+    else{
+        primero=parseInt(storedValue001,10);
+    }
     Empleados=0;
     i=0;
     fetch('http://127.0.0.1:5500/JS/default.json') 
